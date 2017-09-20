@@ -1,11 +1,9 @@
 class FlightsController < ApplicationController
 	def index
 		if params[:date]
-			@flights = Flight.where(departing_date: Date.new(params[:date][:year].to_i,
-						 params[:date][:month].to_i, 
-						 params[:date][:day].to_i)..(Date.new(params[:date][:year].to_i, 
-						 params[:date][:month].to_i, 
-						 params[:date][:day].to_i) + 1.day)).order(departing_date: :desc)
+			@flights = Flight.where(departing_date: 
+				Date.parse(params[:date])..(Date.parse(params[:date]) +
+				 1.day)).order(:departing_date)
 		else
 			@flights = Flight.departings
 		end
@@ -32,5 +30,11 @@ class FlightsController < ApplicationController
 	private
 		def date_params
 			params.require(:date).permit(:year, :month, :day)
+		end
+
+		def dates
+			Flight.departings.map { |f| f.departing_date = "#{f.departing_date.day}.
+															#{f.departing_date.month}.
+															#{f.departing_date.year}" }
 		end
 end

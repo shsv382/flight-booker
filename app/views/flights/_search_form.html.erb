@@ -1,0 +1,7 @@
+<%= form_tag "/flights", method: "get" do %>
+	<%= label :date, "Дата вылета" %>
+	<%= select_tag :date, options_from_collection_for_select(Flight.select(:departing_date).distinct,
+		:departing_date, 
+		:departing_date) %>
+	<%= submit_tag "Поиск" %>
+<% end %>
