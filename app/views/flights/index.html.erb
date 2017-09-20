@@ -1,0 +1,11 @@
+<h1>Flights Index</h1>
+<%= form_tag "/flights", method: "get" do %>
+	<%= label :date, "Дата вылета" %>
+	<%= select_date Date.today + 1.day, prefix: :date, use_month_numbers: true,
+										start_year: Time.now.year,
+										end_year: Time.now.year + 5 %>
+	<%= submit_tag "Поиск" %>
+<% end %>
+<ul>
+	<%= render @flights %>
+</ul>

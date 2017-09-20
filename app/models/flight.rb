@@ -12,9 +12,13 @@ class Flight < ApplicationRecord
 	belongs_to :from_airport, class_name: "Airport"
 	belongs_to :to_airport,   class_name: "Airport"
 
+	scope :departings, 
+	-> {where("departing_date >= ?", Time.now).order(:departing_date)}
 	
 	def cannot_be_the_same
-		errors.add(:to_airport_id, "Аэропорты вылета и прибытия не могут совпадать!") if from_airport_id == to_airport_id
+		if from_airport_id == to_airport_id
+			errors.add(:to_airport_id, "Аэропорты вылета и прибытия не могут совпадать!")
+		end 
 	end
 
 end
