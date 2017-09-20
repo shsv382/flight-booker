@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+1300.times do
+	begin
+		Flight.create(from_airport_id: 1 + rand(Airport.count),
+						to_airport_id: 1 + rand(Airport.count),
+						departing_date: Time.now + rand(8224).hours,
+						time: 1 + rand(12),
+						passengers_count: 100)
+	rescue
+		next
+	end
+end
