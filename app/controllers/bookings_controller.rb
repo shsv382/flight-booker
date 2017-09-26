@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   def new
 #  	@booking = Booking.new()
-#  	@flight_id = params[:booked]
+#  	@flight_id = params[:flight_id]
 #  	@count = params[:passengers_count]
   end
 

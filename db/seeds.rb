@@ -17,7 +17,9 @@
 #		next
 #	end
 #end
-Flight.all.map { |f| 
-	f.departing_date = Date.parse(f.departing_time.to_s) 
+
+Flight.all.map { |f|
+	f.from_airport_id = rand(10) + 1
+	f.to_airport_id = rand(10) + 1
 	f.save
 }

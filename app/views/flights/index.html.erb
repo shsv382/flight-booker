@@ -1,5 +1,11 @@
 <h1>Flights Index</h1>
 	<%= render 'search_form' %>
+
+<%= form_tag("bookings/new", method: "get") do %>
+	<%= label_tag :passengers_count, "Число пассажиров" %>
+	<%= select_tag :passengers_count, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4]], 2) %>
+	<%= submit_tag "Продолжить" %>
 <ul>
 	<%= render @flights %>
 </ul>
+<% end %>

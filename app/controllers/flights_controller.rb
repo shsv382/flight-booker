@@ -7,7 +7,7 @@ class FlightsController < ApplicationController
 				where(to_airport_id: params[:to_airport]).
 				order(:departing_date)
 		else
-			@flights = Flight.departings
+			@flights = Flight.today
 		end
 	end
 

@@ -16,6 +16,9 @@ class Flight < ApplicationRecord
 
 	scope :departings, 
 	-> {where("departing_date >= ?", Time.now).order(:departing_date)}
+
+	scope :today,
+	-> {departings.where("departing_date <= ?", Date.today + 1.day).order(:departing_date)}
 	
 	def cannot_be_the_same
 		if from_airport_id == to_airport_id
