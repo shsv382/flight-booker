@@ -1,1 +1,12 @@
-Bookings#new
+From <%= @flight.from_airport.code %> to <%= @flight.to_airport.code %> 
+	at <%= @flight.departing_time.strftime("%d.%m.%Y %H:%M") %><br>
+Passengers count: <%= @count %>
+<br><br>
+
+<%= form_for @booking do |f| %>
+	<%= f.hidden_field :flight_id, value: @flight.id %>
+	<%= f.fields_for :passenger do |pass| %>
+		<%= pass.text_field :name %>
+	<% end %>
+	<%= f.submit "Создать заявку" %>
+<% end %>

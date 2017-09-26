@@ -1,0 +1,7 @@
+From <%= @booking.flight.from_airport.code %> to <%= @booking.flight.to_airport.code %> 
+	at <%= @booking.flight.departing_time.strftime("%d.%m.%Y %H:%M") %><br>
+Passengers: <ul>
+	<% @booking.passengers.each do |passenger| %>
+		<li><%= passenger.name %></li>
+	<% end %>
+</ul>

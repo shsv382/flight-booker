@@ -1,5 +1,5 @@
 <li>
 	<label>From <%= flight.from_airport.code %> to <%= flight.to_airport.code %> 
-	at <%= flight.departing_time.strftime("%d.%m.%Y %H:%M") %>, id: <%= flight.id %></label>
+	at <%= flight.departing_time.strftime("%d.%m.%Y %H:%M") %></label>
 	<%= radio_button_tag :flight_id, flight.id %>
 </li>
