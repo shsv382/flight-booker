@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#1300.times do
+#13000.times do
 #	begin
 #		Flight.create(from_airport_id: 1 + rand(Airport.count),
 #						to_airport_id: 1 + rand(Airport.count),
@@ -17,3 +17,7 @@
 #		next
 #	end
 #end
+Flight.all.map { |f| 
+	f.departing_date = Date.parse(f.departing_time.to_s) 
+	f.save
+}

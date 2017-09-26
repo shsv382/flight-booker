@@ -1,4 +1,9 @@
 <li>
-	From <%= flight.from_airport.code %> to <%= flight.to_airport.code %> 
-	at <%= flight.departing_date.strftime("%d.%m.%Y %H:%M") %>
+<%= form_tag("bookings/new", method: "get") do %>
+	<label>From <%= flight.from_airport.code %> to <%= flight.to_airport.code %> 
+	at <%= flight.departing_time.strftime("%d.%m.%Y %H:%M") %></label>
+	<%= radio_button_tag :booked, flight.id %>
+	<%= hidden_field_tag :passengers_count, params[:passengers_count] || 1 %>
+	<%= submit_tag "Продолжить" %>
+<% end %>
 </li>

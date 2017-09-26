@@ -1,7 +1,14 @@
 <%= form_tag "/flights", method: "get" do %>
-	<%= label :date, "Дата вылета" %>
-	<%= select_tag :date, options_from_collection_for_select(Flight.select(:departing_date).distinct,
+	<%= label_tag :date, "Дата вылета:" %>
+	<%= select_tag :date, options_from_collection_for_select(Flight.select(:departing_date).distinct.order(departing_date: :asc),
 		:departing_date, 
 		:departing_date) %>
+	<br>
+	<%= select_tag :from_airport, options_from_collection_for_select(Airport.all.distinct,  :id, :code) %>
+	<%= select_tag :to_airport,   options_from_collection_for_select(Airport.all.distinct, :id, :code) %>
+	<br>
+	<%= label_tag :passengers_count, "Число пассажиров" %>
+	<%= select_tag :passengers_count, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4]], 2) %>
+	<br>
 	<%= submit_tag "Поиск" %>
 <% end %>

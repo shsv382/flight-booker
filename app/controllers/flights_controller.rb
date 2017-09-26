@@ -3,7 +3,9 @@ class FlightsController < ApplicationController
 		if params[:date]
 			@flights = Flight.where(departing_date: 
 				Date.parse(params[:date])..(Date.parse(params[:date]) +
-				 1.day)).order(:departing_date)
+				1.day)).where(from_airport_id: params[:from_airport]).
+				where(to_airport_id: params[:to_airport]).
+				order(:departing_date)
 		else
 			@flights = Flight.departings
 		end
