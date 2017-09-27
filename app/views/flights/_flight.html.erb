@@ -1,5 +1,9 @@
-<li>
-	<label>From <%= flight.from_airport.code %> to <%= flight.to_airport.code %> 
-	at <%= flight.departing_time.strftime("%d.%m.%Y %H:%M") %></label>
-	<%= radio_button_tag :flight_id, flight.id %>
-</li>
+<tr><label for="flight_id_<%= flight.id %>">
+	<td class="aer"><%= flight.from_airport.code %></td>
+	<td class="aer"><%= flight.to_airport.code %></td>
+	<td class="aer_date"><%= flight.departing_time.strftime("%d.%m.%Y %H:%M") %></td>
+	<td class="aer"><%= flight.time %> hours</td>
+	<td class="aer">
+	<%= radio_button_tag :flight_id, flight.id %></td>
+</label>
+</tr>

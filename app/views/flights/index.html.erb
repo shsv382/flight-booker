@@ -1,11 +1,23 @@
-<h1>Flights Index</h1>
-	<%= render 'search_form' %>
+<%= render 'search_form' %>
 
 <%= form_tag("bookings/new", method: "get") do %>
 	<%= label_tag :passengers_count, "Число пассажиров" %>
 	<%= select_tag :passengers_count, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4]], 2) %>
 	<%= submit_tag "Продолжить" %>
-<ul>
-	<%= render @flights %>
-</ul>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2" style="background-color: #0ff">
+		<table>
+			<thead>
+				<tr>
+					<th>Аэропорт отправления</th>
+					<th>Аэропорт прибытия</th>
+					<th>Дата, время отправления</th>
+					<th>Время в пути</th>
+					<th>Выбрать рейс</th>
+				</tr>
+			</thead>
+			<%= render @flights %>
+		</table>
+	</div>
+</div>
 <% end %>

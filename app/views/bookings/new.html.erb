@@ -6,9 +6,14 @@ From <%= @flight.from_airport.code %> to <%= @flight.to_airport.code %>
 		<%= f.hidden_field :flight_id, value: @flight.id %>
 		<% @count.to_i.times do |i| %>
 		<%= f.fields_for :passenger do |pass| %>
-			<%= pass.label "name#{i}".to_sym, "Имя пассажира #{i+1}" %>
+			<%= pass.label "name#{i}", "Имя пассажира #{i+1}" %>
+		<% if cookies[:passengers] %>
 			<%= pass.text_field "name#{i}".to_sym, 
-				value: cookies[:passengers]["name#{i}".to_sym] %>
+				value: cookies[:passengers]["name#{i}"] %>
+		<% else %>
+			<%= pass.text_field "name#{i}".to_sym, 
+				value: "" %>
+		<% end %>
 		<% end %>
 		<br>
 		<% end %>

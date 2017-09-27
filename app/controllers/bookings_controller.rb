@@ -22,8 +22,9 @@ class BookingsController < ApplicationController
   		@booking.passengers << @passenger
   	end
   	cookies[:passengers] = { value: params[:booking][:passenger], 
-  									expires: Time.now + 1.hour} 
+  									expires: Time.now + 5.minutes} 
   	if @booking.save
+      cookies.delete(:passengers)
   		flash[:success] = "Заказ успешно оформлен!"
   		redirect_to @booking
   	else
