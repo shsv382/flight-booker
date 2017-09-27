@@ -1,8 +1,6 @@
 <%= form_tag "/flights", method: "get" do %>
 	<%= label_tag :date, "Дата вылета:" %>
-	<%= select_tag :date, options_from_collection_for_select(Flight.select(:departing_date).distinct.order(departing_date: :asc),
-		:departing_date, 
-		:departing_date) %>
+	<%= select_tag :date, options_for_select(Flight.departings.select(:departing_date).distinct.order(departing_date: :asc).map{ |u| [u.departing_date.to_s, u.departing_date] }.uniq) %>
 	<br>
 	<%= select_tag :from_airport, options_from_collection_for_select(Airport.all.distinct,  :id, :code) %>
 	<%= select_tag :to_airport,   options_from_collection_for_select(Airport.all.distinct, :id, :code) %>
