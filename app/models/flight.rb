@@ -15,10 +15,10 @@ class Flight < ApplicationRecord
 	has_many :passengers, through: :bookings
 
 	scope :departings, 
-	-> {where("departing_date >= ?", Time.now).order(:departing_date)}
+	-> {where("departing_date >= ?", Time.now).order(:departing_time)}
 
 	scope :today,
-	-> {departings.where("departing_date <= ?", Date.today + 1.day).order(:departing_date)}
+	-> {departings.where("departing_date <= ?", Date.today + 1.day).order(:departing_time)}
 	
 	def cannot_be_the_same
 		if from_airport_id == to_airport_id

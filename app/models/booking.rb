@@ -3,7 +3,8 @@ class Booking < ApplicationRecord
 	has_many :passengers
 	validates :flight_id, presence: true
 	validate :pass_count
-	accepts_nested_attributes_for :passengers
+	accepts_nested_attributes_for :passengers, reject_if: 
+						lambda { |attributes| attributes['name'].blank? }
 
 	def pass_count
 		if passenger_ids.count < 1
