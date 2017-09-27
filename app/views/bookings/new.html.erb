@@ -7,7 +7,8 @@ From <%= @flight.from_airport.code %> to <%= @flight.to_airport.code %>
 		<% @count.to_i.times do |i| %>
 		<%= f.fields_for :passenger do |pass| %>
 			<%= pass.label "name#{i}".to_sym, "Имя пассажира #{i+1}" %>
-			<%= pass.text_field "name#{i}".to_sym %>
+			<%= pass.text_field "name#{i}".to_sym, 
+				value: cookies[:passengers]["name#{i}".to_sym] %>
 		<% end %>
 		<br>
 		<% end %>
@@ -18,8 +19,4 @@ From <%= @flight.from_airport.code %> to <%= @flight.to_airport.code %>
 <% if flash[:error] %>
 <br><br>
 	<%= flash[:error] %>
-	<ul>
-		<li>flight_id: <%= cookies[:flight_id] %></li>
-		<li>passengers_count: <%= cookies[:passengers_count] %></li>
-	</ul>
 <% end %>

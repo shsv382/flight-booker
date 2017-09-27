@@ -21,6 +21,8 @@ class BookingsController < ApplicationController
   		@passenger = Passenger.create(name: params[:booking][:passenger]["name#{i}".to_sym])
   		@booking.passengers << @passenger
   	end
+  	cookies[:passengers] = { value: params[:booking][:passenger], 
+  									expires: Time.now + 1.hour} 
   	if @booking.save
   		flash[:success] = "Заказ успешно оформлен!"
   		redirect_to @booking
